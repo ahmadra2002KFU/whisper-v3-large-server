@@ -1,0 +1,20 @@
+[Unit]
+Description=Whisper API Server
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/path/to/whisper-v3-large-server
+ExecStart=/usr/bin/python3 whisper_api.py
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+# Environment variables
+Environment=PYTHONUNBUFFERED=1
+Environment=CUDA_VISIBLE_DEVICES=0
+
+[Install]
+WantedBy=multi-user.target
